@@ -1,11 +1,18 @@
 package com.aluracursos.screenmatch.service;
-import com.google.gson.Gson;
+
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ConvierteDatos implements IConvierteDatos{
-    Gson gson = new Gson();
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public <T> T obtenerDatos(String json, Class<T> clase) {
-        return gson.fromJson(json, clase);
+    public <T> T obtenerDatos(String json, Class<T> clase){
+        try {
+            return objectMapper.readValue(json, clase);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

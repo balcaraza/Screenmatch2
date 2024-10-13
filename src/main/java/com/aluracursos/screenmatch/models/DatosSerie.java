@@ -1,9 +1,11 @@
 package com.aluracursos.screenmatch.models;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+@JsonIgnoreProperties(ignoreUnknown = true)
 
 public record DatosSerie(
-        @SerializedName("Title") String titulo,
-        @SerializedName("totalSeasons") Integer totalTemporadas,
-        @SerializedName("imdbRating") String calificacion) {
+        @JsonProperty("Title") String titulo,
+        @JsonProperty("totalSeasons") Integer totalTemporadas,
+        @JsonProperty("imdbRating") String calificacion) {
 }

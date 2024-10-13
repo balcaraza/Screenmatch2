@@ -1,11 +1,18 @@
 package com.aluracursos.screenmatch;
 
+import com.aluracursos.screenmatch.main.EjemploStreams;
+import com.aluracursos.screenmatch.main.Main;
+import com.aluracursos.screenmatch.models.DatosEpisodio;
 import com.aluracursos.screenmatch.models.DatosSerie;
+import com.aluracursos.screenmatch.models.DatosTemporadas;
 import com.aluracursos.screenmatch.service.ConsumoAPI;
 import com.aluracursos.screenmatch.service.ConvierteDatos;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class ScreenmatchApplication implements CommandLineRunner {
@@ -16,11 +23,9 @@ public class ScreenmatchApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		var consumoAPI = new ConsumoAPI();
-		var json = consumoAPI.obtenerDatos("https://www.omdbapi.com/?t=suits&apikey=6d1d6576");
-		System.out.println("JSON: " + json);
-		ConvierteDatos conversor = new ConvierteDatos();
-		var datos = conversor.obtenerDatos(json, DatosSerie.class);
-		System.out.println(datos);
+		Main main = new Main();
+		main.muestraMenu();
+		//EjemploStreams ejemploStreams = new EjemploStreams();
+		//ejemploStreams.muestraEjemplo();
 	}
 }
